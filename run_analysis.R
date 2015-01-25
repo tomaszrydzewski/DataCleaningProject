@@ -66,14 +66,14 @@ Column_names <- c("SubjectID","ActivityName",Column_names)
 # Get the columns for 
 tidy_data_FINAL<-tidy_data[,Column_names]
 
+final= aggregate(tidy_data_FINAL, by=list(carb=mtcars$carb, am=mtcars$am), mean)
 
+aggdata <-aggregate(tidy_data_FINAL[,], by=list(tidy_data_FINAL$ActivityName,tidy_data_FINAL$SubjectID),FUN=mean, na.rm=TRUE)
+aggdata$ActivityName <- aggdata$Group.1
+aggdata$SubjectID <- aggdata$Group.2
+aggdata<-aggdata[,3:90]
 
-?table.write
-
-write.table("dataexport.csv",tidy_data_FINAL,row.name=FALSE)  
-
-sapply(split(tidy_data_FINAL, mtcars$cyl), mean)
-
+write.table(aggdata, file = "dataexport.txt", row.name=FALSE)
 
 
 
