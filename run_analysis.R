@@ -66,7 +66,11 @@ Column_names <- c("SubjectID","ActivityName",Column_names)
 # Get the columns for 
 tidy_data_FINAL<-tidy_data[,Column_names]
 
-tidy_data_FINAL
+
+
+?table.write
+
+write.table("dataexport.csv",tidy_data_FINAL,row.name=FALSE)  
 
 sapply(split(tidy_data_FINAL, mtcars$cyl), mean)
 
